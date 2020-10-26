@@ -1,6 +1,7 @@
 # CarListAppForEmiratesAuction
 
 I have used two approaches to get the car list.
+
 Approach 1:
 	 I have used 3 layed architecture such as Model,View,Controller. The controller is user to retrieve information from the API. 
 	 View will display the required formatted output. Model with have the data structure properties.
