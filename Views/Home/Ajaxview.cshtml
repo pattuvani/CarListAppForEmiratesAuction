@@ -1,0 +1,45 @@
+﻿@model IEnumerable<CarListAppForEmiratesAuction.Models.CarViewModel>
+
+@{
+    ViewBag.Title = "sampleview";
+}
+
+<h2>Car List Using AJAX Call</h2>
+
+
+
+<ul id="CarList">
+</ul>
+
+<script>
+         $(document).ready(function () {
+                 $.ajax({
+                     url: 'https://api.eas.ae/v2/carsonline?source=mweb',
+                     type: 'GET',
+                     dataType: 'json',
+                     success: function (response) {
+
+                         var ListValue = "";
+
+                         var i;
+
+                         //Generic loop to iterate the response arrays.
+                         for (i = 0; i < response.Cars.length; ++i) {
+                             ListValue += "<li>" + response.Cars[i].carID + " --- " + response.Cars[i].makeEn + "," + response.Cars[i].modelEn
+                                 + response.Cars[i].bodyEn + "," + response.Cars[i].AuctionInfo.currentPrice + ","+response.Cars[i].AuctionInfo.bids
+                         }
+
+                         //Add/Append the formatted values of ListValue variable into ID called "CarList"
+                         $("#CarList").append(ListValue);
+                     },
+                     failure: function (response) {
+                         alert("Failure");
+                     },
+                     error: function (response) {
+                         alert("Error");
+                     }
+                 });
+
+         });
+</script>
+

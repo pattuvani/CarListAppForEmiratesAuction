@@ -1,12 +1,15 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "FilterList";
 }
+
+<h2>Filter List</h2>
 <div>
 
-    <table id="CarListTbl" class="table table-stripe">
+    <table class="table table-stripe">
 
         <tbody>
-            @foreach (var item in ViewBag.jsondata)
+            @foreach (var item in ViewBag.Filtereddata)
             {
                 <tr>
                     <td>
@@ -18,8 +21,8 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h3 class="card-title">@item.makeEn | <cite dir="rtl">@item.makeAr</cite></h3>
-                                        <p class="card-text">@item.modelEn | <cite dir="rtl">@item.modelAr</cite></p>
+                                        <h3 class="card-title">@item.makeEn</h3>
+                                        <p class="card-text">@item.modelEn</p>
                                         <p class="card-text">@item.AuctionInfo.currentPrice AED</p>
                                         <p class="card-text">Bids  : @item.AuctionInfo.bids</p>
                                         <p class="card-text">lot # : @item.AuctionInfo.lot</p>
@@ -33,19 +36,17 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </td>
                 </tr>
             }
             <tr>
                 <td>
-                    @*@Html.ActionLink("Load More...", "GetList", "Home",ViewBag.pageno)*@
-                    <button type="button" class="btn btn-group-justified">Load More ....</button>
+                    @Html.ActionLink("Back to CarList", "Index", "home")
                 </td>
             </tr>
         </tbody>
     </table>
+
     @*//To remove unwanted string in image url*@
     @functions{
         public string replace(string img)
@@ -57,10 +58,3 @@
     }
 </div>
 
-<script>
-    //To AutoRefresh the page after 10 seconds
-    setInterval("my_function();", 10000);
-    function my_function() {
-       // window.location = location.href;
-    }
-</script>
